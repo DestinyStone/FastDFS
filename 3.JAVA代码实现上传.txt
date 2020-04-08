@@ -1,0 +1,17 @@
+@RequestMapping(value = "upload")
+@ResponseBody
+public String upload(@RequestParam("username") String username, @RequestParam("file") MultipartFile file) throws IOException {
+        System.out.println(username);
+
+        String fileName = file.getOriginalFilename();
+        String fileSubfix = fileName.substring(fileName.indexOf(".") + 1);
+
+        System.out.println(fileSubfix);
+        StorePath storePath = fastFileStorageClient.uploadFile(file.getInputStream(),file.getSize(), fileSubfix, null);   //关键代码
+
+        System.out.println(storePath.getGroup());
+        System.out.println(storePath.getPath());
+        System.out.println(storePath.getFullPath());
+
+        return "success";
+}

@@ -1,0 +1,18 @@
+1. 定义：
+	轻量级存储服务器
+
+基本名词
+	tracker  跟踪器
+		起到调度作用， 负载均衡作用
+	storage 储存节点 
+		图片存储使用
+
+上传过程
+	a. Client询问Tracker server应上传到哪个Storage server；
+	b. Tracker server返回一台可用的Storage server，返回的数据为该Storage server的IP地址和端口；
+	c. Client直接和该Storage server建立连接，进行文件上传，Storage server返回新生成的文件ID，文件上传结束。
+
+下载过程
+	1. Client询问Tracker server可以下载指定文件的Storage server，参数为文件ID（包含Volume号和文件名）；
+	2. Tracker server返回一台可用的Storage server；
+	3. Client直接和该Storage server建立连接，完成文件下载。
